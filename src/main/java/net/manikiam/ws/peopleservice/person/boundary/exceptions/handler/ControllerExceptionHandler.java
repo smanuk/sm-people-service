@@ -23,9 +23,14 @@ public class ControllerExceptionHandler {
     @ResponseBody
     public ErrorDetails handleObjectNotFoundException(ObjectNotFoundException exception, WebRequest request) {
 
-        String details = String.format("%s, %s", ((ServletWebRequest)request).getRequest().getMethod(), request.getDescription(false));
-        ErrorDetails errorDetails = new ErrorDetails(formatter.format(new Date()), exception.getMessage(), details);
+        ErrorDetails errorDetails = new ErrorDetails(getTimestamp(), exception.getMessage(), getDetails(request));
         return errorDetails;
+    }
+
+
+    private String getDetails(WebRequest request) {
+
+        return String.format("%s, %s", ((ServletWebRequest)request).getRequest().getMethod(), request.getDescription(false));
     }
 
     private String getTimestamp() {
