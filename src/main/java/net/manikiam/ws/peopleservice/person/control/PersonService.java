@@ -20,4 +20,14 @@ public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
+
+    public List<Person> getPeople() {
+
+        Iterable<Person> people = personRepository.findAll();
+
+        List<Person> peopleList = new ArrayList<>();
+        people.forEach(peopleList::add);
+
+        return peopleList;
+    }
 }

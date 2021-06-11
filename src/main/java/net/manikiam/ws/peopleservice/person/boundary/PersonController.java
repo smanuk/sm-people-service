@@ -1,7 +1,9 @@
 package net.manikiam.ws.peopleservice.person.boundary;
 
 import lombok.extern.slf4j.Slf4j;
+import net.manikiam.ws.peopleservice.person.control.PersonService;
 import net.manikiam.ws.peopleservice.person.entiry.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -13,10 +15,13 @@ import java.util.List;
 @RequestMapping(value = "v1/people")
 public class PersonController {
 
+    @Autowired
+    private PersonService personService;
+
     @GetMapping
     public List<Person> getPeople() {
 
-        return Collections.emptyList();
+        return personService.getPeople();
     }
 
     @GetMapping("{id}")
