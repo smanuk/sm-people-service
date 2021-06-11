@@ -1,0 +1,23 @@
+package net.manikiam.ws.peopleservice.person.control;
+
+import lombok.extern.slf4j.Slf4j;
+import net.manikiam.ws.peopleservice.person.boundary.PersonRepository;
+import net.manikiam.ws.peopleservice.person.boundary.exceptions.ObjectNotFoundException;
+import net.manikiam.ws.peopleservice.person.entiry.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+@Slf4j
+@Service
+public class PersonService {
+
+    @Autowired
+    PersonRepository personRepository;
+}
