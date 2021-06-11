@@ -6,6 +6,7 @@ import net.manikiam.ws.peopleservice.person.entiry.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -31,13 +32,13 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person newPerson(@RequestBody Person person) {
+    public Person newPerson(@RequestBody @Valid Person person) {
 
         return personService.newPerson(person);
     }
 
     @PutMapping("{id}")
-    public Person updatePerson(@PathVariable("id")Long id, @RequestBody Person person) {
+    public Person updatePerson(@PathVariable("id")Long id, @RequestBody @Valid Person person) {
 
         return personService.updatePerson(id, person);
     }
