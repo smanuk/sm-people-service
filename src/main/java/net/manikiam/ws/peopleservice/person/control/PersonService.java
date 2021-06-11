@@ -30,4 +30,9 @@ public class PersonService {
 
         return peopleList;
     }
+    
+    public Person newPerson(Person person) {
+
+        return personRepository.save(person);
+    }
 }

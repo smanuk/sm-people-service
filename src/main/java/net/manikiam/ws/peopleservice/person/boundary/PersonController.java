@@ -37,8 +37,8 @@ public class PersonController {
 
 
     @PostMapping
-    public Person newPerson(Person person) {
+    public Person newPerson(@RequestBody Person person) {
 
-        return person;
+        return personService.newPerson(person);
     }
 }
