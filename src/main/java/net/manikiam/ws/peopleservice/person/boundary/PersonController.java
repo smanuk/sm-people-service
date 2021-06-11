@@ -30,10 +30,21 @@ public class PersonController {
         return personService.getPerson(id);
     }
 
-
     @PostMapping
     public Person newPerson(@RequestBody Person person) {
 
         return personService.newPerson(person);
+    }
+
+    @PutMapping("{id}")
+    public Person updatePerson(@PathVariable("id")Long id, @RequestBody Person person) {
+
+        return personService.updatePerson(id, person);
+    }
+
+    @DeleteMapping("{id}")
+    public void deletePerson(@PathVariable("id")Long id) {
+
+        personService.detelePerson(id);
     }
 }

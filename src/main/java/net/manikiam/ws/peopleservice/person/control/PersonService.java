@@ -45,4 +45,17 @@ public class PersonService {
 
         return personRepository.save(person);
     }
+
+    public Person updatePerson(Long id, Person person) {
+
+        getPerson(id);
+        //TODO we can put JaVers in here to check if the entity has changed
+        return personRepository.save(person);
+    }
+
+    public void detelePerson(Long id) {
+
+        personRepository.delete(getPerson(id));
+    }
+
 }
