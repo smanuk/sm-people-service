@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
-    SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
 
     @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
@@ -25,5 +26,9 @@ public class ControllerExceptionHandler {
         String details = String.format("%s, %s", ((ServletWebRequest)request).getRequest().getMethod(), request.getDescription(false));
         ErrorDetails errorDetails = new ErrorDetails(formatter.format(new Date()), exception.getMessage(), details);
         return errorDetails;
+    }
+
+    private String getTimestamp() {
+        return LocalDateTime.now().format(formatter);
     }
 }
