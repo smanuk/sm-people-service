@@ -30,7 +30,17 @@ public class PersonService {
 
         return peopleList;
     }
-    
+
+    public Person getPerson(Long id) {
+
+        Optional<Person> person = personRepository.findById(id);
+        if (person.isPresent()) {
+            return person.get();
+        }
+
+        throw new ObjectNotFoundException(Person.class, id);
+    }
+
     public Person newPerson(Person person) {
 
         return personRepository.save(person);

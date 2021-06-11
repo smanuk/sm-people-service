@@ -25,14 +25,9 @@ public class PersonController {
     }
 
     @GetMapping("{id}")
-    public Person getPerson(@PathVariable("id") String id) {
+    public Person getPerson(@PathVariable("id") Long id) {
 
-        return Person.builder()
-                .firstName("James")
-                .lastName("Kirk")
-                .dateOfBirth(LocalDate.of(2233, 3, 22))
-                .countryCode("us")
-                .build();
+        return personService.getPerson(id);
     }
 
 
