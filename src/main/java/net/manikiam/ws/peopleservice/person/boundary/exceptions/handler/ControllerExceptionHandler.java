@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
 import java.text.SimpleDateFormat;
@@ -18,7 +19,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleObjectNotFoundException(ObjectNotFoundException exception, WebRequest request) {
 
-        ErrorDetails errorDetails = new ErrorDetails(formatter.format(new Date()), exception.getMessage(), request.getDescription(false));
+        String details = String.format("%s, %s", ((ServletWebRequest)request).getRequest().getMethod(), request.getDescription(false));
+        ErrorDetails errorDetails = new ErrorDetails(formatter.format(new Date()), exception.getMessage(), details);
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 }
