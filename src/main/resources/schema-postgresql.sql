@@ -1,7 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS app AUTHORIZATION admin;
 
 CREATE TABLE IF NOT EXISTS person(
-    id bigint NOT NULL UNIQUE,
+    id bigserial PRIMARY KEY,
     first_name varchar(100),
     last_name varchar(100),
     date_of_birth date,
