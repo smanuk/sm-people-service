@@ -4,3 +4,24 @@ server:
 spring:
   application:
     name: "@project.name@"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5436/demo_app?currentSchema=app
+    username: admin
+    password: password
+    driver-class-name: org.postgresql.Driver
+    initialize: true
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+      show-sql: true
+
+  sql:
+    init:
+      enabled: true
+      continue-on-error: true
+      platform: postgresql
