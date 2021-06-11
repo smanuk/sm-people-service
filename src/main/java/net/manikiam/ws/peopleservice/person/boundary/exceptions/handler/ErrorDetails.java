@@ -1,5 +1,10 @@
 package net.manikiam.ws.peopleservice.person.boundary.exceptions.handler;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class ErrorDetails {
 
     private String timestamp;
@@ -7,7 +12,7 @@ public class ErrorDetails {
     private String details;
 
     public ErrorDetails(String timestamp, String message, String details) {
-        super();
+
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;
