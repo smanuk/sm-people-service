@@ -1,4 +1,4 @@
-package net.manikiam.ws.peopleservice.person.entiry;
+package net.manikiam.ws.peopleservice.person.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
