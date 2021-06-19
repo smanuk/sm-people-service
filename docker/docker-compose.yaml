@@ -1,11 +1,35 @@
 version: '3.1'
 
+volumes:
+  postgres_data:
+    driver: local
+
 services:
-  person_db:
+  postgres:
     image: postgres:latest
+    volumes:
+      - /Users/sman/Documents/development/workspace-idea/sm-people-service/docker/init:/docker-entrypoint-initdb.d
+      - /Users/sman/Documents/development/workspace-idea/sm-people-service/docker/postgres_data:/var/lib/postgresql/data
     ports:
-      - 5436:5432
+      - 5432:5432
     environment:
-      POSTGRES_DB: demo_app
+      POSTGRES_MULTIPLE_DATABASES: demo_app,keycloak
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_SCHEMA: public
+      DB_USER: admin
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    depends_on:
+      - postgres
+    ports:
+      - 40005:8080
